@@ -5,6 +5,9 @@ import random
 
 pygame.init()
 
+# Get rid of the pygame.draw.rect which are commented out to see hitboxes
+
+
 W, H = 800, 437
 win = pygame.display.set_mode((W,H))
 pygame.display.set_caption('Hollow Runner')
@@ -88,7 +91,9 @@ class saw(object):
 
     def draw(self, win):
         self.hitbox = (self.x + 10, self.y + 5, self.width - 20, self.height - 5)
+        
         #pygame.draw.rect(win, (255,0,0), self.hitbox, 2)
+        
         if self.rotateCount >= 8:
             self.rotateCount = 0
         win.blit(pygame.transform.scale(self.rotate[self.rotateCount//2], (64,64)), (self.x,self.y))
@@ -106,7 +111,9 @@ class spike(saw):
 
     def draw(self, win):
         self.hitbox = (self.x + 10, self.y, 28,355)
+        
         #pygame.draw.rect(win, (255,0,0), self.hitbox, 2)
+        
         win.blit(self.img, (self.x, self.y))
 
     def collide(self, rect):
